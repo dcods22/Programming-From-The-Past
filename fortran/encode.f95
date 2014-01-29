@@ -1,36 +1,32 @@
 program first
-!comments
+!Start of the Program
+!By Daniel Cody
 
-CHARACTER(LEN=20) :: testString="hello world"
+CHARACTER(LEN=20) :: testString="Hello World"
+CHARACTER(LEN=0) dummyString
 
-INTEGER y
-
-CHARACTER(LEN = 1) c
-
-do n=1, 20, 1
-
-c = testString(n:n+1)
-y = iachar(c)
-y = y - 32
-c = achar(y)
-
-print *,c
-
-end do
-
-
+CALL upperCase(testString)
 
 end program first
 
 subroutine upperCase(x)
-   CHARACTER(LEN = *) x
-   INTEGER charValue 
+   CHARACTER(LEN=20) x
+   CHARACTER(LEN=1) ch
+   INTEGER charInt
    
-   
-   do n=1, 20, 1
+   do i=1, 20, 1
 
-	!charValue = iachar(letter)
+	   ch = x(i:i+1)
+	   charInt = iachar(ch)
+
+	   IF (y > 90) THEN
+		  charInt = y - 32
+	   END IF
+
+	   ch = achar(charInt)
    
+		print *,ch
+		
    end do
 
 end subroutine
