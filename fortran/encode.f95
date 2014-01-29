@@ -2,7 +2,7 @@ program first
 !Start of the Program
 !By Daniel Cody
 
-CHARACTER(LEN=40) :: testString="hal"
+CHARACTER(LEN=40) :: testString="hal@"
 
 !Convert to uppercase
 CALL upperCase(testString)
@@ -114,7 +114,6 @@ subroutine decrypt(str, shiftAmount)
 	print *,str
 end subroutine
 
-
 subroutine solve(str, maxShiftValue)
 	!define variables
 	CHARACTER(LEN=*) str
@@ -144,6 +143,8 @@ subroutine solve(str, maxShiftValue)
 			END IF
 		
 			ch = achar(newInt)
+			
+			!reinsert characters
 			printSTR(i:i) = ch
 		end do	
 		print *,"Caesar ", n, ": ", printSTR
