@@ -3,34 +3,87 @@ PROGRAM-ID. ENCODE.
 
 DATA DIVISION.
 LOCAL-STORAGE SECTION.
-01 str      PIC A(50) VALUE 'abcdefg123456'.
+01 ENCRYPT  PIC A(15).
+01 str      PIC A(13) VALUE 'abcdefg123456'.
 01 moveAmt  PIC 99 VALUE 1.
-01 char     PIC A(50).
-01 newChar  PIC A(50).
-01 newStr  PIC A(50).
-01 currC    PIC 99.
-01 charInt  PIC 99.
-01 newInt   PIC 99.
 
 PROCEDURE DIVISION.
 
 MOVE FUNCTION Upper-case(str) to str
-DISPLAY str
+
+CALL 'ENCRYPT' USING str moveAmt.
+
+STOP RUN.
+
+IDENTIFICATION DIVISION.
+PROGRAM-ID. ENCRYPT.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01 char     PIC A(1).
+01 newChar  PIC A(1).
+01 newStr  PIC A(13).
+01 currC    PIC 99.
+01 charInt  PIC 99.
+01 newInt   PIC 99.
+
+LINKAGE SECTION.
+01 str      PIC A(13).
+01 moveAmt  PIC 99.
+
+PROCEDURE DIVISION.
 
 PERFORM VARYING currC FROM 0 BY 1 UNTIL currC > LENGTH OF str 
     MOVE str(currC:currC) TO char(1:1)
     COMPUTE charInt = FUNCTION ORD(char)
     IF charInt > 65 THEN
         ADD charInt moveAmt GIVING newInt
-        MOVE FUNCTION CHAR(newInt) to newChar
-        MOVE newChar(1:1) TO newStr(currC:currC)
+        MOVE FUNCTION CHAR(newInt) to newChar  
     ELSE
-        MOVE str(currC:currC) to newChar(1:1)
+        MOVE str(currC:currC) to newChar
     END-IF
+    
+    MOVE newChar(1:1) TO newStr(currC:currC)
     
 END-PERFORM
 
 DISPLAY newStr
 
+EXIT PROGRAM.
 
-STOP RUN.
+
+IDENTIFICATION DIVISION.
+PROGRAM-ID. DECRYPT.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01 char     PIC A(1).
+01 newChar  PIC A(1).
+01 newStr  PIC A(13).
+01 currC    PIC 99.
+01 charInt  PIC 99.
+01 newInt   PIC 99.
+
+LINKAGE SECTION.
+01 str      PIC A(13).
+01 moveAmt  PIC 99.
+
+PROCEDURE DIVISION.
+
+PERFORM VARYING currC FROM 0 BY 1 UNTIL currC > LENGTH OF str 
+    MOVE str(currC:currC) TO char(1:1)
+    COMPUTE charInt = FUNCTION ORD(char)
+    IF charInt > 65 THEN
+        SUBTRACT moveAmt FROM charInt GIVING newInt
+        MOVE FUNCTION CHAR(newInt) to newChar  
+    ELSE
+        MOVE str(currC:currC) to newChar
+    END-IF
+    
+    MOVE newChar(1:1) TO newStr(currC:currC)
+    
+END-PERFORM
+
+DISPLAY newStr
+
+EXIT PROGRAM.
