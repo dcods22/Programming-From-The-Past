@@ -3,17 +3,22 @@ PROGRAM-ID. ENCODE.
 
 DATA DIVISION.
 LOCAL-STORAGE SECTION.
-01 str      PIC A(50) VALUE 'Hello1'.
+01 str      PIC A(50) VALUE 'HhLlo1'.
 01 char     PIC A(50).
 01 currC    PIC 99.
-01 totalC   PIC 99.
+01 charInt  PIC 99.
 
 PROCEDURE DIVISION.
-MOVE str(1:1) TO char
-DISPLAY char
+
+MOVE FUNCTION Upper-case(str) to str
+DISPLAY str
+
 PERFORM VARYING currC FROM 0 BY 1 UNTIL currC > LENGTH OF str 
-    MOVE str(currC:currC) TO char
-    DISPLAY char
+    MOVE str(currC:currC) TO char(1:1)
+    COMPUTE charInt = FUNCTION ORD(char)
+    IF charInt > 33 THEN
+    
+    END-IF.
 END-PERFORM
 
 
