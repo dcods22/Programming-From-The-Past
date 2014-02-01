@@ -3,10 +3,14 @@ PROGRAM-ID. ENCODE.
 
 DATA DIVISION.
 LOCAL-STORAGE SECTION.
-01 str      PIC A(50) VALUE 'HhLlo1'.
+01 str      PIC A(50) VALUE 'abcdefg123456'.
+01 moveAmt  PIC 99 VALUE 1.
 01 char     PIC A(50).
+01 newChar  PIC A(50).
+01 newStr  PIC A(50).
 01 currC    PIC 99.
 01 charInt  PIC 99.
+01 newInt   PIC 99.
 
 PROCEDURE DIVISION.
 
@@ -16,11 +20,17 @@ DISPLAY str
 PERFORM VARYING currC FROM 0 BY 1 UNTIL currC > LENGTH OF str 
     MOVE str(currC:currC) TO char(1:1)
     COMPUTE charInt = FUNCTION ORD(char)
-    IF charInt > 33 THEN
+    IF charInt > 65 THEN
+        ADD charInt moveAmt GIVING newInt
+        MOVE FUNCTION CHAR(newInt) to newChar
+        MOVE newChar(1:1) TO newStr(currC:currC)
+    ELSE
+        MOVE str(currC:currC) to newChar(1:1)
+    END-IF
     
-    END-IF.
 END-PERFORM
 
+DISPLAY newStr
 
 
 STOP RUN.
