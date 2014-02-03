@@ -48,7 +48,7 @@ PERFORM VARYING currC FROM 0 BY 1 UNTIL currC > LENGTH OF str
     
     MOVE newChar(1:1) TO newStr(currC:currC)
     
-END-PERFORM
+END-PERFORM;
 
 DISPLAY newStr
 
@@ -85,7 +85,7 @@ PERFORM VARYING currC FROM 0 BY 1 UNTIL currC > LENGTH OF str
     
     MOVE newChar(1:1) TO newStr(currC:currC)
     
-END-PERFORM
+END-PERFORM;
 
 DISPLAY newStr
 
@@ -122,6 +122,6 @@ PERFORM VARYING currC FROM 0 BY 1 UNTIL sol > solves
         END-IF
         
         MOVE newChar(1:1) TO newStr(currC:currC)        
-    END-PERFORM
-END-PERFORM
+    END-PERFORM;
+END-PERFORM;
 EXIT PROGRAM.
