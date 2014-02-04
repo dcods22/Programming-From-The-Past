@@ -3,18 +3,18 @@ PROGRAM-ID. ENCODE.
 
 DATA DIVISION.
 LOCAL-STORAGE SECTION.
-01 Estr     PIC A(16) VALUE 'THIS IS A TEST STRING FROM ALAN 12345'.
-01 Dstr     PIC A(16) VALUE 'BPQA QA I BMAB ABZQVO NZWU ITIV 12345'.
-01 Sstr     PIC A(16) VALUE 'hal'.
-01 moveAmt  PIC 99 VALUE 8.
+01 Estr     PIC A(16) VALUE 't3st 0rInG!@'.
+01 Dstr     PIC A(16) VALUE 'b3Ab 0zQvO!@ '.
+01 Sstr     PIC A(16) VALUE 'halo22'.
+01 moveAmt  PIC 99 VALUE 26.
 01 solves   PIC 99 VALUE 26.
 01 countInt PIC 99 VALUE 0.
 01 char     PIC A(1).
 01 newChar  PIC A(1).
 01 newStr   PIC A(16).
-01 currC    PIC 99.
-01 charInt  PIC 99.
-01 newInt   PIC 99.
+01 currC    PIC 999.
+01 charInt  PIC 999.
+01 newInt   PIC 999.
 01 sol      PIC 99.
 
 PROCEDURE DIVISION.
@@ -43,8 +43,8 @@ ENCRYPT.
         IF charInt > 65 THEN
             ADD charInt moveAmt GIVING newInt
             IF newINT > 91 THEN
-                SUBTRACT 90 FROM newInt GIVING newInt
-                ADD 64 newInt giving newInt
+                SUBTRACT 91 FROM newInt GIVING newInt
+                ADD 65 newInt giving newInt
             END-IF
             MOVE FUNCTION CHAR(newInt) to newChar  
         ELSE
@@ -100,3 +100,4 @@ SOLVE.
         ADD 1 TO countInt giving countInt
         DISPLAY 'Caeser ' sol ': ' newStr
     END-PERFORM.
+
