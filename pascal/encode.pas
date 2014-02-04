@@ -1,4 +1,4 @@
-Program HelloWorld(output);
+Program Encode;
 {comments}
 var str: String;
 var a : integer;
