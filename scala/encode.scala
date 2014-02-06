@@ -1,9 +1,9 @@
 object encode {
 	def main(args: Array[String]) {
 		//variables
-		var Estr : String = "THIS IS A TEST STRING FROM";
-		var Dstr : String = "BPQA QA I BMAB ABZQVO NZWU";
-		var Sstr : String = "hal";
+		var Estr : String = "THIS IS A TEST STRING FROM1122@";
+		var Dstr : String = "BPQA QA I BMAB ABZQVO NZWU1122@";
+		var Sstr : String = "hal@";
 		
 		Estr = Estr.map(_.toUpper);
 		Dstr = Dstr.map(_.toUpper);
@@ -22,7 +22,7 @@ object encode {
 		for( i <- 0 to str.size - 1){
 			char = str.charAt(i);
 			charInt = char.toInt;
-			if( charInt != 32){
+			if( charInt != 32 && charInt > 56 ){
 				if( charInt > 64 ){
 					charInt = charInt + moveAmt;
 				}
@@ -46,11 +46,11 @@ object encode {
 		for( i <- 0 to str.size - 1){
 			char = str.charAt(i);
 			charInt = char.toInt;
-			if( charInt != 32){
+			if( charInt != 32 && charInt > 56){
 				if( charInt > 64 ){
 					charInt = charInt - moveAmt;
 				}
-				if( charInt < 64) {
+				if( charInt < 64 ) {
 					charInt = 90 - (64 -charInt);
 				}	
 			}
