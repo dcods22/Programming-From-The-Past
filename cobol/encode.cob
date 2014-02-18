@@ -3,8 +3,8 @@ PROGRAM-ID. ENCODE.
 
 DATA DIVISION.
 LOCAL-STORAGE SECTION.
-01 Estr     PIC A(16) VALUE 't3st 0rInG!@'.
-01 Dstr     PIC A(16) VALUE 'b3Ab 0zQvO!@ '.
+01 Estr     PIC A(16) VALUE 'test String@'.
+01 Dstr     PIC A(16) VALUE 'BMAB ABZQVO@ '.
 01 Sstr     PIC A(16) VALUE 'halo22'.
 01 moveAmt  PIC 99 VALUE 26.
 01 solves   PIC 99 VALUE 26.
